@@ -1,11 +1,5 @@
 # fresh
 
-[![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][downloads-url]
-[![Node.js Version][node-version-image]][node-version-url]
-[![Build Status][travis-image]][travis-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
-
 HTTP response freshness testing
 
 ## Installation
@@ -14,23 +8,21 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [npm registry](https://www.npmjs.com/). Installation is done using the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
-```
-$ npm install fresh
+```shell
+$ npm install @robireton/fresh
 ```
 
 ## API
 
-<!-- eslint-disable no-unused-vars -->
-
 ```js
-var fresh = require('fresh')
+import fresh from '@robireton/fresh'
 ```
 
 ### fresh(reqHeaders, resHeaders)
 
 Check freshness of the response using request and response headers.
 
-When the response is still "fresh" in the client's cache `true` is
+When the response is still “fresh” in the client’s cache `true` is
 returned, otherwise `false` is returned to indicate that the client
 cache is now stale and the full response should be sent.
 
@@ -57,16 +49,14 @@ links to further reading on this Safari bug.
 
 ### API usage
 
-<!-- eslint-disable no-redeclare, no-undef -->
-
 ```js
-var reqHeaders = { 'if-none-match': '"foo"' }
-var resHeaders = { 'etag': '"bar"' }
+const reqHeaders = { 'if-none-match': '"foo"' }
+const resHeaders = { 'etag': '"bar"' }
 fresh(reqHeaders, resHeaders)
 // => false
 
-var reqHeaders = { 'if-none-match': '"foo"' }
-var resHeaders = { 'etag': '"foo"' }
+const reqHeaders = { 'if-none-match': '"foo"' }
+const resHeaders = { 'etag': '"foo"' }
 fresh(reqHeaders, resHeaders)
 // => true
 ```
@@ -74,10 +64,10 @@ fresh(reqHeaders, resHeaders)
 ### Using with Node.js http server
 
 ```js
-var fresh = require('fresh')
-var http = require('http')
+import fresh from '@robireton/fresh'
+import http from 'node:http'
 
-var server = http.createServer(function (req, res) {
+const server = http.createServer((req, res) => {
   // perform server logic
   // ... including adding ETag / Last-Modified response headers
 
@@ -106,14 +96,3 @@ server.listen(3000)
 ## License
 
 [MIT](LICENSE)
-
-[npm-image]: https://img.shields.io/npm/v/fresh.svg
-[npm-url]: https://npmjs.org/package/fresh
-[node-version-image]: https://img.shields.io/node/v/fresh.svg
-[node-version-url]: https://nodejs.org/en/
-[travis-image]: https://img.shields.io/travis/jshttp/fresh/master.svg
-[travis-url]: https://travis-ci.org/jshttp/fresh
-[coveralls-image]: https://img.shields.io/coveralls/jshttp/fresh/master.svg
-[coveralls-url]: https://coveralls.io/r/jshttp/fresh?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/fresh.svg
-[downloads-url]: https://npmjs.org/package/fresh
