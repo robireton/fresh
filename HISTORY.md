@@ -1,3 +1,8 @@
+1.0.0 / 2023-01-25
+==================
+
+  * rewrite as ECMAScript Module
+
 unreleased
 ==========
 
